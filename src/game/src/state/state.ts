@@ -23,8 +23,10 @@ export let state: State = {
   enemyHealth: 0,
   enemyThrust: 0,
   enemyWeaponPower: 0,
-  spaceShipsContract: undefined,
-  spaceCoinsContract: undefined,
+  contracts: {
+    spaceShipsContract: undefined,
+    spaceCoinsContract: undefined,
+  },
   ownedShips: [],
   currentShip: {
     tokenId: 0,

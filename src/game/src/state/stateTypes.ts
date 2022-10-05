@@ -45,8 +45,10 @@ export type State = {
   enemyHealth: number
   enemyThrust: number
   enemyWeaponPower: number
-  spaceShipsContract?: string
-  spaceCoinsContract?: string
+  contracts: {
+    spaceShipsContract?: string
+    spaceCoinsContract?: string
+  }
   ownedShips: ShipToken[]
   currentShip: ShipToken | null
   currentLevelIndex: number

@@ -23,40 +23,48 @@ export class ConnectWalletScene extends Phaser.Scene {
     this.showLoading = false
     this.showingLoading = false
 
-    const bg = this.add.image(
-      this.sys.canvas.width / 2,
-      this.sys.canvas.height / 2,
-      'bgHome',
-    ).setScale(0.5)
+    const bg = this.add.image(this.sys.canvas.width / 2, this.sys.canvas.height / 2, 'bgHome').setScale(0.5)
 
     this.buttonConnectWallet = this.add.image(
       this.sys.canvas.width / 2,
-      this.sys.canvas.height / 2 + 300,
+      this.sys.canvas.height / 2 + 250,
       'buttonConnectWallet',
     )
     this.buttonConnectWallet.setSize(this.buttonConnectWallet.width, this.buttonConnectWallet.height)
     this.buttonConnectWallet.setInteractive({ cursor: 'pointer' })
     this.buttonConnectWallet.on(
       'pointerover',
-      () => !this.showingLoading && this.buttonConnectWallet && this.buttonConnectWallet.setTexture('buttonConnectWalletHover'),
+      () =>
+        !this.showingLoading &&
+        this.buttonConnectWallet &&
+        this.buttonConnectWallet.setTexture('buttonConnectWalletHover'),
     )
     this.buttonConnectWallet.on(
       'pointerout',
-      () => !this.showingLoading && this.buttonConnectWallet && this.buttonConnectWallet.setTexture('buttonConnectWallet'),
+      () =>
+        !this.showingLoading && this.buttonConnectWallet && this.buttonConnectWallet.setTexture('buttonConnectWallet'),
     )
     this.buttonConnectWallet.on('pointerdown', async () => {
       this.sound.add('clickSound').play()
       this.showLoading = true
-      await connectWallet()
-      await getShips()
-      this.scene.start('SelectShip')
+      try {
+        await connectWallet()
+        await getShips()
+        this.scene.start('SelectShip')
+      } catch (e: any) {
+        console.log(e)
+        this.showLoading = false
+        this.showingLoading = false
+        this.buttonConnectWallet!.setTexture('buttonConnectWallet')
+        alert(e)
+      }
     })
 
     this.sound.add('backgroundMusic').play({ loop: true })
   }
 
   update(): void {
-    if (this.showLoading && !this.showingLoading &&  this.buttonConnectWallet) {
+    if (this.showLoading && !this.showingLoading && this.buttonConnectWallet) {
       this.showingLoading = true
       this.buttonConnectWallet.setTexture('buttonLoading')
     }

@@ -6,16 +6,16 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
-error SpaceShipsError();
+error SpaceAdventuresError();
 
-contract SpaceShips is ERC721URIStorage {
+contract SpaceAdventures is ERC721URIStorage {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
     mapping(uint256 => string) public _tokenToShipCode;
     mapping(address => mapping(uint256 => uint256)) public _ownedTokens;
 
     constructor(string memory tokenName, string memory symbol) ERC721(tokenName, symbol) {
-        console.log("Deploying SpaceShips contract");
+        console.log("Deploying SpaceAdventures contract");
     }
 
     function mintShip(address owner) public returns (uint256) {
@@ -54,6 +54,6 @@ contract SpaceShips is ERC721URIStorage {
     }
 
     function throwError() external pure {
-        revert SpaceShipsError();
+        revert SpaceAdventuresError();
     }
 }
