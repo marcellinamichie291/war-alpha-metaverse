@@ -38,7 +38,7 @@ const chainIds = {
   rinkeby: 4,
   "meter-testnet": 83,
   "theta-testnet": 365,
-  "xdc-testnet": 51
+  "coinex-testnet": 53
 };
 
 function getChainConfig(chain: keyof typeof chainIds): NetworkUserConfig {
@@ -56,8 +56,8 @@ function getChainConfig(chain: keyof typeof chainIds): NetworkUserConfig {
     case "theta-testnet":
       jsonRpcUrl = "https://eth-rpc-api-testnet.thetatoken.org/rpc";
       break;
-    case "xdc-testnet":
-        jsonRpcUrl = "https://rpc.apothem.network";
+    case "coinex-testnet":
+        jsonRpcUrl = "https://testnet-rpc.coinex.net";
         break;
     default:
       jsonRpcUrl = "https://" + chain + ".infura.io/v3/" + infuraApiKey;
@@ -113,7 +113,7 @@ const config: HardhatUserConfig = {
     avalanche: getChainConfig("avalanche"),
     "meter-testnet": getChainConfig("meter-testnet"),
     "theta-testnet": getChainConfig("theta-testnet"),
-    "xdc-testnet": getChainConfig("xdc-testnet"),
+    "coinex-testnet": getChainConfig("coinex-testnet"),
     bsc: getChainConfig("bsc"),
     mainnet: getChainConfig("mainnet"),
     optimism: getChainConfig("optimism-mainnet"),

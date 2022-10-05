@@ -36,7 +36,7 @@ export type Level = {
 }
 
 export type State = {
-  paused: boolean,
+  paused: boolean
   playerMaxHealth: number
   playerStartingHealth: number
   playerHealth: number
@@ -45,8 +45,8 @@ export type State = {
   enemyHealth: number
   enemyThrust: number
   enemyWeaponPower: number
-  spaceShipsContract: string
-  spaceCoinsContract: string
+  spaceShipsContract?: string
+  spaceCoinsContract?: string
   ownedShips: ShipToken[]
   currentShip: ShipToken | null
   currentLevelIndex: number
@@ -56,4 +56,11 @@ export type State = {
   shopInventory: string[]
   shipSize: number
   itemSize: number
+}
+
+export type Contracts = {
+  [networkId: number]: {
+    spaceShipsContract: string
+    spaceCoinsContract: string
+  }
 }
