@@ -36,8 +36,8 @@ export let state: State = {
   },
   ownedAdventures: [],
   currentAdventure: {
-    name: '',
-    description: '',
+    name: 'The Last Ship',
+    description: 'After staying in cryostasis for 300 years, you awake in a new galaxy. A ship is hailing you, asking for identification. This adenture will take you to the end of the galaxy in 17 levels of increasing difficulty.',
     external_url: '',
     image: '',
     attributes: [],

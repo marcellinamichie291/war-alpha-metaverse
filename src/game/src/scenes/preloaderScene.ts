@@ -54,7 +54,7 @@ export class PreloaderScene extends Phaser.Scene {
 
     this.load.script('webfont', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js')
 
-    this.load.image('background', './assets/stars.png')
+    this.load.image('background', './assets/background.png')
     this.load.image('star', './assets/star.png')
     this.load.image('titleLoading', './assets/title-loading.png')
     this.load.image('buttonConnectWallet', './assets/button-connect-wallet.png')
@@ -109,12 +109,20 @@ export class PreloaderScene extends Phaser.Scene {
     this.load.svg('enemy-healthbar-bar', './assets/healthbar/enemy-healthbar-bar.svg')
     this.load.svg('enemy-healthbar-starter', './assets/healthbar/enemy-healthbar-starter.svg')
     this.load.svg('enemy-healthbar-container', './assets/healthbar/enemy-healthbar-container.svg')
-
     this.load.svg('dialog', './assets/dialog.svg')
     this.load.svg('header', './assets/header.svg')
     this.load.svg('right-arrow', './assets/right-arrow.svg')
     this.load.svg('left-arrow', './assets/left-arrow.svg')
     this.load.svg('menu-cell', './assets/menu-cell.svg')
+    this.load.svg('button-alphas', './assets/button-alphas.svg')
+    this.load.svg('button-adventures', './assets/button-adventures.svg')
+    this.load.svg('button-ships', './assets/button-ships.svg')
+    this.load.svg('ratings', './assets/ratings.svg')
+    this.load.svg('swap-100-alphas', './assets/swap-100-alphas.svg')
+    this.load.svg('swap-10-alphas', './assets/swap-10-alphas.svg')
+    this.load.svg('page-cell', './assets/page-cell.svg')
+    this.load.svg('button-sell-adventure', './assets/button-sell-adventure.svg')
+    this.load.svg('adventure-cell', './assets/adventure-cell.svg')
 
     this.load.image('bossLabel', './assets/boss-label.png')
     this.load.image('currentPosition', './assets/current-position.png')

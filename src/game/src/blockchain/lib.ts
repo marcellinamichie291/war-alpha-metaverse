@@ -76,20 +76,20 @@ export const upgradeShip = async (ship: ShipToken) => {
   console.log(confirmation)
 }
 
-export const getTokenBalance = async () => {
+export const getAlphasBalance = async () => {
   const spaceCoinsBalance = await spaceCoinsContractWithSigner.balanceOf(address)
   state.spaceCoinsBalance = spaceCoinsBalance.toNumber()
   console.log(spaceCoinsBalance.toNumber(), 'SpaceCoins')
 }
 
-export const mintTokens = async () => {
-  const tx = await spaceCoinsContractWithSigner.mint(address, 1000)
-  const confirmation = await provider.getTransactionReceipt(tx.hash)
-  console.log(confirmation)
+export const mintTokens = async (amount: number) => {
+  const tx = await spaceCoinsContractWithSigner.mint(address, amount)
+  const receipt = await tx.wait()
+  console.log(receipt)
 }
 
 export const burnTokens = async () => {
   const tx = await spaceCoinsContractWithSigner.burn(1000)
-  const confirmation = await provider.getTransactionReceipt(tx.hash)
-  console.log(confirmation)
+  const receipt = await tx.wait()
+  console.log(receipt)
 }

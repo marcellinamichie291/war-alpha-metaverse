@@ -63,7 +63,7 @@ export class GameOverScene extends Phaser.Scene {
     buttonBack.on('pointerout', () => buttonBack.setTexture('buttonBack'))
     buttonBack.on('pointerdown', () => {
       this.sound.add('clickSound').play()
-      this.scene.start('SelectShip')
+      this.scene.start('Selector')
     })
   }
 

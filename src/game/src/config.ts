@@ -1,13 +1,16 @@
 require('dotenv').config()
-import { PreloaderScene } from './scenes/preloaderScene';
-import { ConnectWalletScene } from './scenes/connectWalletScene';
-import { GameOverScene } from './scenes/gameOverScene';
-import { GameScene } from './scenes/game/gameScene';
-import { InventoryScene } from './scenes/inventoryScene';
-import { ShopScene } from './scenes/shopScene';
-import { SelectShipScene } from './scenes/selectShipScene';
-import { MapScene } from './scenes/mapScene';
-import { DialogScene } from './scenes/dialogScene';
+import { PreloaderScene } from './scenes/preloaderScene'
+import { ConnectWalletScene } from './scenes/connectWalletScene'
+import { GameOverScene } from './scenes/gameOverScene'
+import { GameScene } from './scenes/game/gameScene'
+import { InventoryScene } from './scenes/inventoryScene'
+import { ShopScene } from './scenes/shopScene'
+import { SelectorScene } from './scenes/selectorScene'
+import { MapScene } from './scenes/mapScene'
+import { DialogScene } from './scenes/dialogScene'
+import { GetAlphasScene } from './scenes/getAlphas'
+import { GetShipsScene } from './scenes/getShips'
+import { GetAdventuresScene } from './scenes/getAdventures'
 
 export const GameConfig: Phaser.Types.Core.GameConfig = {
   title: 'WarAlpha',
@@ -17,19 +20,32 @@ export const GameConfig: Phaser.Types.Core.GameConfig = {
   height: 800,
   type: Phaser.AUTO,
   parent: 'game',
-  scene: [PreloaderScene, ConnectWalletScene, SelectShipScene, GameScene, InventoryScene, ShopScene, GameOverScene, MapScene, DialogScene],
+  scene: [
+    PreloaderScene,
+    ConnectWalletScene,
+    SelectorScene,
+    GameScene,
+    InventoryScene,
+    ShopScene,
+    GameOverScene,
+    MapScene,
+    DialogScene,
+    GetAlphasScene,
+    GetShipsScene,
+    GetAdventuresScene,
+  ],
   input: {
     keyboard: true,
     mouse: true,
     touch: false,
-    gamepad: false
+    gamepad: false,
   },
   physics: {
     default: 'arcade',
     arcade: {
-      debug: false
-    }
+      debug: false,
+    },
   },
   backgroundColor: '#010022',
-  render: { pixelArt: false, antialias: true }
-};
+  render: { pixelArt: false, antialias: true },
+}

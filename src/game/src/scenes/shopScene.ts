@@ -1,4 +1,4 @@
-import { burnTokens, getTokenBalance, mintTokens } from '../blockchain/lib'
+import { burnTokens, getAlphasBalance, mintTokens } from '../blockchain/lib'
 import { state } from '../state/state'
 
 export class ShopScene extends Phaser.Scene {
@@ -22,7 +22,7 @@ export class ShopScene extends Phaser.Scene {
   }
 
   init(): void {
-    getTokenBalance()
+    getAlphasBalance()
   }
 
   preload(): void {}
@@ -56,8 +56,8 @@ export class ShopScene extends Phaser.Scene {
     this.balanceTimer = this.time.addEvent({
       delay: 5000,
       callback: () => {
-        console.log('getTokenBalance')
-        getTokenBalance()
+        console.log('getAlphasBalance')
+        getAlphasBalance()
       },
       callbackScope: this,
       loop: true,
@@ -99,7 +99,7 @@ export class ShopScene extends Phaser.Scene {
               state.inventory = state.inventory.filter((e) => e !== itemName)
               this.scene.restart()
 
-              mintTokens()
+              mintTokens(10)
             }
           })
         }

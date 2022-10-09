@@ -1,4 +1,4 @@
-import { connectWallet, getShips } from '../blockchain/lib'
+import { connectWallet, getAlphasBalance, getShips } from '../blockchain/lib'
 import { state } from '../state/state'
 
 export class ConnectWalletScene extends Phaser.Scene {
@@ -50,7 +50,8 @@ export class ConnectWalletScene extends Phaser.Scene {
       try {
         await connectWallet()
         await getShips()
-        this.scene.start('SelectShip')
+        await getAlphasBalance()
+        this.scene.start('Selector')
       } catch (e: any) {
         console.log(e)
         this.showLoading = false

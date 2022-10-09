@@ -47,7 +47,7 @@ export class GameButtons extends Phaser.GameObjects.Container {
     buttonBack.on('pointerdown', () => {
       scene.sound.add('clickSound').play()
       this.destroyScene(scene)
-      scene.scene.start('SelectShip')
+      scene.scene.start('Selector')
     })
   }
 
