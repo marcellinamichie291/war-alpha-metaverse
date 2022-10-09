@@ -111,6 +111,10 @@ export class PreloaderScene extends Phaser.Scene {
     this.load.svg('enemy-healthbar-container', './assets/healthbar/enemy-healthbar-container.svg')
 
     this.load.svg('dialog', './assets/dialog.svg')
+    this.load.svg('header', './assets/header.svg')
+    this.load.svg('right-arrow', './assets/right-arrow.svg')
+    this.load.svg('left-arrow', './assets/left-arrow.svg')
+    this.load.svg('menu-cell', './assets/menu-cell.svg')
 
     this.load.image('bossLabel', './assets/boss-label.png')
     this.load.image('currentPosition', './assets/current-position.png')

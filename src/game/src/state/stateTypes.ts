@@ -3,6 +3,15 @@ export type ShipToken = {
   shipCode: string
 }
 
+export type AdventureToken = {
+  name: string
+  description: string
+  external_url: string
+  image: string
+  attributes?: any[]
+  levels: Level[]
+}
+
 export type Effect = {
   addToPlayerHealth?: number
   addToEnemyHealth?: number
@@ -51,6 +60,8 @@ export type State = {
   }
   ownedShips: ShipToken[]
   currentShip: ShipToken | null
+  ownedAdventures: AdventureToken[]
+  currentAdventure: AdventureToken | null
   currentLevelIndex: number
   levelHistory: number[]
   spaceCoinsBalance: number
@@ -64,5 +75,6 @@ export type Contracts = {
   [networkId: number]: {
     spaceShipsContract: string
     spaceCoinsContract: string
+    spaceAdventuresContract: string
   }
 }

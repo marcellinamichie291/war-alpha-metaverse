@@ -20,6 +20,8 @@ export const connectWallet = async () => {
   if (!state.contracts || !state.contracts.spaceShipsContract || !state.contracts.spaceCoinsContract)
     throw new Error('Wrong Network. Please connect Metamask to the correct testnet.')
 
+  await provider.send('eth_requestAccounts', [])
+
   signer = provider.getSigner()
   address = await signer.getAddress()
 
