@@ -62,7 +62,7 @@ export class SelectorScene extends Phaser.Scene {
 
     // ---------- Ships ---------- //
     this.add
-      .text(687 + 101, 152 + 20, `SHIP ${state.currentShip?.shipCode}`, {
+      .text(687 + 101, 152 + 20,  state.currentShip?.shipCode ? `SHIP ${state.currentShip?.shipCode}` : 'NO SHIP', {
         fontFamily: 'Ethnocentric',
       })
       .setFontSize(34)

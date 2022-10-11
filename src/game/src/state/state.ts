@@ -30,10 +30,7 @@ export let state: State = {
     spaceCoinsContract: undefined,
   },
   ownedShips: [],
-  currentShip: {
-    tokenId: 0,
-    shipCode: '0000',
-  },
+  currentShip: null,
   ownedAdventures: [],
   currentAdventure: {
     name: 'The Last Ship',

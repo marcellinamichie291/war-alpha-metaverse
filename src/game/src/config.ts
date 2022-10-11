@@ -8,9 +8,9 @@ import { ShopScene } from './scenes/shopScene'
 import { SelectorScene } from './scenes/selectorScene'
 import { MapScene } from './scenes/mapScene'
 import { DialogScene } from './scenes/dialogScene'
-import { GetAlphasScene } from './scenes/getAlphas'
-import { GetShipsScene } from './scenes/getShips'
-import { GetAdventuresScene } from './scenes/getAdventures'
+import { GetAlphasScene } from './scenes/getAlphasScene'
+import { GetShipsScene } from './scenes/getShipsScene'
+import { GetAdventuresScene } from './scenes/getAdventuresScene'
 
 export const GameConfig: Phaser.Types.Core.GameConfig = {
   title: 'WarAlpha',

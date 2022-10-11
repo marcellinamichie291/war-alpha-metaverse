@@ -2,7 +2,7 @@
 
 ### Demo: https://waralpha.io
 
-War Alpha Metaverse is a space shooter game with upgradable NFT spaceships and a built-in DSL for you to create your own adventures! Let's first look into the game itself then the DSL.
+War Alpha Metaverse is a space shooter game on CoinEx with upgradable NFT spaceships and a built-in DSL for you to create and sell your own adventures! Let's first look into the game itself then the DSL.
 
 ## About the game
 
