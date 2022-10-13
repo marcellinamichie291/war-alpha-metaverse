@@ -1,5 +1,4 @@
 import { state } from '../state/state'
-import { levels } from '../dsl/dsl.json' assert { type: 'json' }
 
 export class MapScene extends Phaser.Scene {
   constructor() {
@@ -21,15 +20,21 @@ export class MapScene extends Phaser.Scene {
       'bg1',
     )
 
+    const currentAdventure = state.currentAdventure
+    if(!currentAdventure) {
+      this.scene.start('Selector')
+      return
+    }
+
     this.add.tileSprite(
-      levels[levels.length - 1].starX,
-      levels[levels.length - 1].starY - 50,
+      currentAdventure.levels[currentAdventure.levels.length - 1].starX,
+      currentAdventure.levels[currentAdventure.levels.length - 1].starY - 50,
       95,
       48,
       'bossLabel',
     )
 
-    const currentLevel = levels[state.currentLevelIndex]
+    const currentLevel = currentAdventure.levels[state.currentLevelIndex]
     // @ts-ignore
     levels.forEach((level: Level, index: number) => {
       const star = this.add.circle(level.starX, level.starY, 6, 0xffffff)
@@ -52,8 +57,8 @@ export class MapScene extends Phaser.Scene {
     })
 
     let currentPosition = this.add.image(
-      levels[state.currentLevelIndex].starX,
-      levels[state.currentLevelIndex].starY,
+      currentAdventure.levels[state.currentLevelIndex].starX,
+      currentAdventure.levels[state.currentLevelIndex].starY,
       'currentPosition',
     )
     this.tweens.add({

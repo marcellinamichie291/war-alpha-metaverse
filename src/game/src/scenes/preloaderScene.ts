@@ -122,6 +122,7 @@ export class PreloaderScene extends Phaser.Scene {
     this.load.svg('swap-10-alphas', './assets/swap-10-alphas.svg')
     this.load.svg('page-cell', './assets/page-cell.svg')
     this.load.svg('button-sell-adventure', './assets/button-sell-adventure.svg')
+    this.load.svg('button-buy-adventure', './assets/button-buy-adventure.svg')
     this.load.svg('adventure-cell', './assets/adventure-cell.svg')
 
     this.load.image('bossLabel', './assets/boss-label.png')

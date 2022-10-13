@@ -1,4 +1,5 @@
 import { Contracts, State } from './stateTypes'
+import adventure1 from '../dsl/dsl.json' assert { type: 'json' }
 
 export const contracts: Contracts = {
   80001: {
@@ -12,6 +13,12 @@ export const contracts: Contracts = {
     spaceShipsContract: '0xaa71521B33f97CF7466519025BC6d60F55B9dD44',
     spaceCoinsContract: '0x43a4394Aa97Dd5962653886aeD985247d79706cb',
     spaceAdventuresContract: '0x3cC726914296882fB70Bca05017758a611b62A27',
+  },
+  1001: {
+    //klaytn-testnet
+    spaceShipsContract: '0xaa71521B33f97CF7466519025BC6d60F55B9dD44',
+    spaceCoinsContract: '0x43a4394Aa97Dd5962653886aeD985247d79706cb',
+    spaceAdventuresContract: '0x8847EA4d32992A5C1AdAcc6eD9d90847106ae208',
   },
 }
 
@@ -32,14 +39,7 @@ export let state: State = {
   ownedShips: [],
   currentShip: null,
   ownedAdventures: [],
-  currentAdventure: {
-    name: 'The Last Ship',
-    description: 'After staying in cryostasis for 300 years, you awake in a new galaxy. A ship is hailing you, asking for identification. This adenture will take you to the end of the galaxy in 17 levels of increasing difficulty.',
-    external_url: '',
-    image: '',
-    attributes: [],
-    levels: [],
-  },
+  currentAdventure: adventure1,
   currentLevelIndex: 0,
   levelHistory: [],
   spaceCoinsBalance: 0,

@@ -2,7 +2,6 @@ import { Enemy } from '../../objects/enemy'
 import { Ship } from '../../objects/ship'
 import { state } from '../../state/state'
 import { Drop } from '../../objects/drop'
-import { levels } from '../../dsl/dsl.json' assert { type: 'json' }
 import { PlayerHealthBar } from '../../objects/playerHealthBar'
 import { EnemyHealthBar } from '../../objects/enemyHealthBar'
 import { Level } from 'state/stateTypes'
@@ -35,7 +34,13 @@ export class GameScene extends Phaser.Scene {
   private preload(): void {}
 
   private create(): void {
-    const currentLevel: Level = levels[state.currentLevelIndex] as Level
+    const currentAdventure = state.currentAdventure
+    if (!currentAdventure) {
+      this.scene.start('Selector')
+      return
+    }
+
+    const currentLevel: Level = currentAdventure.levels[state.currentLevelIndex] as Level
     state.playerHealth = state.playerStartingHealth
     state.enemyHealth = currentLevel.enemyHealth
 
@@ -63,7 +68,7 @@ export class GameScene extends Phaser.Scene {
       this.sys.canvas.height / 2,
       this.sys.canvas.width,
       this.sys.canvas.height,
-      levels[state.currentLevelIndex].background,
+      currentAdventure.levels[state.currentLevelIndex].background,
     )
     bg.setDepth(-1)
 
@@ -99,8 +104,7 @@ export class GameScene extends Phaser.Scene {
     state.paused = true
     console.log('Launch Dialog')
     //this.scene.launch('Dialog')
-    this.scene.run('Dialog');
-
+    this.scene.run('Dialog')
   }
 
   public update(time: number, delta: number): void {

@@ -6,6 +6,7 @@ export type ShipToken = {
 export type AdventureToken = {
   name: string
   description: string
+  price: number
   external_url: string
   image: string
   attributes?: any[]

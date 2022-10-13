@@ -1,5 +1,4 @@
 import { state } from '../state/state'
-import { levels } from '../dsl/dsl.json' assert { type: 'json' }
 import { Level, Response, Story } from 'state/stateTypes'
 
 export class DialogScene extends Phaser.Scene {
@@ -25,7 +24,12 @@ export class DialogScene extends Phaser.Scene {
   preload(): void {}
 
   create(): void {
-    const currentLevel: Level = levels[state.currentLevelIndex] as Level
+    const currentAdventure = state.currentAdventure
+    if(!currentAdventure) {
+      this.scene.start('Selector')
+      return
+    }
+    const currentLevel: Level = currentAdventure.levels[state.currentLevelIndex] as Level
 
     this.cameras.main.setBackgroundColor('rgba(0,0,0,0.5)')
     this.add.image(this.sys.canvas.width / 2, this.sys.canvas.height / 2, 'dialog')
