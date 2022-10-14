@@ -31,13 +31,13 @@ export class GetShipsScene extends Phaser.Scene {
       'background',
     )
 
-    this.add.image(this.sys.canvas.width / 2, 100, 'titleSelectShip')
+    this.add.image(100 + 700, 25 + 30, 'header')
 
     for (let i = 0; i < 4; i++) {
       const bigCell = this.add.image(
         this.sys.canvas.width / 2 - 450 + i * 300,
         this.sys.canvas.height / 2 - 50,
-        'bigCell',
+        'ship-cell',
       )
       const ship = state.ownedShips[i]
 

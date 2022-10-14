@@ -11,7 +11,7 @@ export class MapScene extends Phaser.Scene {
 
   preload(): void {}
 
-  create(): void {
+  create(): void {    
     this.add.tileSprite(
       this.sys.canvas.width / 2,
       this.sys.canvas.height / 2,
@@ -36,7 +36,7 @@ export class MapScene extends Phaser.Scene {
 
     const currentLevel = currentAdventure.levels[state.currentLevelIndex]
     // @ts-ignore
-    levels.forEach((level: Level, index: number) => {
+    currentAdventure.levels.forEach((level: Level, index: number) => {
       const star = this.add.circle(level.starX, level.starY, 6, 0xffffff)
       const distance = Math.sqrt(Math.pow(level.starX - currentLevel.starX, 2) + Math.pow(level.starY - currentLevel.starY, 2))
       if (distance < 400) {

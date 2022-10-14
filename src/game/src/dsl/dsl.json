@@ -2,8 +2,8 @@
   "name": "The Last Ship",
   "description": "After staying in cryostasis for 300 years, you awake in a new galaxy. A ship is hailing you, asking for identification. This adenture will take you to the end of the galaxy in 17 levels of increasing difficulty.",
   "price": 0,
-  "external_url": "https://waralpha.io/adventures/the-last-ship",
-  "image": "https://waralpha.io/adventures/the-last-ship/image.png",
+  "external_url": "https://waralpha.io",
+  "image": "ipfs://QmdWHdtu487dpv664JwiiHQR9Q3DqDrbnJ4ZMhsue6qFQR",
   "attributes": [],
   "levels": [
     {

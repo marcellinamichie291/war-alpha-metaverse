@@ -68,6 +68,8 @@ export class SelectorScene extends Phaser.Scene {
       .setFontSize(34)
       .setOrigin(0.5)
 
+    if(!state.currentShip?.shipCode) this.add.image(this.sys.canvas.width / 2, this.sys.canvas.height / 2, 'no-ship')
+
     const ship = state.currentShip
     if (ship && ship.shipCode) {
       const partCabin = this.add.image(0, 0, `partCabin${ship.shipCode[0]}`)
