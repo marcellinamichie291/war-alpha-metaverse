@@ -11,6 +11,7 @@ contract SpaceAdventures is ERC721, Ownable, ReentrancyGuard {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
     mapping(uint256 => TokenMeta) private _tokenMeta;
+    mapping(uint256 => address) private _creators;
 
     string baseURI;
 
@@ -99,8 +100,51 @@ contract SpaceAdventures is ERC721, Ownable, ReentrancyGuard {
         _tokenIds.increment();
         uint256 newItemId = _tokenIds.current();
         _mint(_owner, newItemId);
+        _creators[newItemId] = msg.sender;
         TokenMeta memory meta = TokenMeta(newItemId, _price, _name, _tokenURI, _isOnSale);
         _setTokenMeta(newItemId, meta);
         return newItemId;
+    }
+
+    function getTokensOwnedByMe() public view returns (uint256[] memory) {
+        uint256 numberOfExistingTokens = _tokenIds.current();
+        uint256 numberOfTokensOwned = balanceOf(msg.sender);
+        uint256[] memory ownedTokenIds = new uint256[](numberOfTokensOwned);
+
+        uint256 currentIndex = 0;
+        for (uint256 i = 0; i < numberOfExistingTokens; i++) {
+            uint256 tokenId = i + 1;
+            if (ownerOf(tokenId) != msg.sender) continue;
+            ownedTokenIds[currentIndex] = tokenId;
+            currentIndex += 1;
+        }
+
+        return ownedTokenIds;
+    }
+
+    function getTokenCreatorById(uint256 tokenId) public view returns (address) {
+        return _creators[tokenId];
+    }
+
+    function getTokensCreatedByMe() public view returns (uint256[] memory) {
+        uint256 numberOfExistingTokens = _tokenIds.current();
+        uint256 numberOfTokensCreated = 0;
+
+        for (uint256 i = 0; i < numberOfExistingTokens; i++) {
+            uint256 tokenId = i + 1;
+            if (_creators[tokenId] != msg.sender) continue;
+            numberOfTokensCreated += 1;
+        }
+
+        uint256[] memory createdTokenIds = new uint256[](numberOfTokensCreated);
+        uint256 currentIndex = 0;
+        for (uint256 i = 0; i < numberOfExistingTokens; i++) {
+            uint256 tokenId = i + 1;
+            if (_creators[tokenId] != msg.sender) continue;
+            createdTokenIds[currentIndex] = tokenId;
+            currentIndex += 1;
+        }
+
+        return createdTokenIds;
     }
 }
