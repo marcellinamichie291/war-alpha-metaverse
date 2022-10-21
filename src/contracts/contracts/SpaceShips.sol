@@ -23,7 +23,7 @@ contract SpaceShips is ERC721, Ownable, ReentrancyGuard {
         bool isOnSale;
     }
 
-    constructor() ERC721("War Alpha Adventures", "WA-A") {}
+    constructor() ERC721("War Alpha Ships", "SHIP") {}
 
     function _baseURI() internal view virtual override returns (string memory) {
         return baseURI;

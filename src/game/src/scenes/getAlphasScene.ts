@@ -1,4 +1,4 @@
-import { getAlphasBalance, getShips, mintShip, mintTokens } from '../blockchain/lib'
+import { getAlphasBalance, mintTokens } from '../blockchain/lib'
 import { state } from '../state/state'
 
 export class GetAlphasScene extends Phaser.Scene {

@@ -6,8 +6,9 @@ import "../node_modules/@openzeppelin/contracts/token/ERC20/extensions/ERC20Burn
 import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
 
 contract SpaceCoins is ERC20, ERC20Burnable, Ownable {
-    constructor() ERC20("War Alpha Coins", "WA-C") {}
+    constructor() ERC20("War Alpha Coins", "ALPHA") {}
 
+    // Faucet
     function mint(address to, uint256 amount) public {
         _mint(to, amount);
     }

@@ -2,23 +2,29 @@ import { Contracts, State } from './stateTypes'
 import adventure1 from '../dsl/dsl.json' assert { type: 'json' }
 
 export const contracts: Contracts = {
-  80001: {
-    //polygon-mumbai
-    spaceShipsContract: '0xC95D885A85A3fc66F6c2c9511E8769e9CbC70363',
-    spaceCoinsContract: '0x393fDB069940aF8E7AFd04ab9D61A0E2Bb474d03',
-    spaceAdventuresContract: '',
-  },
-  53: {
-    //coinex-testnet
+  5: {
+    //goerli
     spaceShipsContract: '0xaa71521B33f97CF7466519025BC6d60F55B9dD44',
     spaceCoinsContract: '0x43a4394Aa97Dd5962653886aeD985247d79706cb',
     spaceAdventuresContract: '0x3cC726914296882fB70Bca05017758a611b62A27',
   },
+  80001: {
+    //polygon-mumbai
+    spaceShipsContract: '0x731717aF633444a034a6C2436f716B0Caf3C57D6',
+    spaceCoinsContract: '0xe1E4E959A260C20DC6252C2C999a253b7F39de18',
+    spaceAdventuresContract: '0xF96D06D186BcAd378157CFdCd1D072f187c11b91',
+  },
+  53: {
+    //coinex-testnet
+    spaceShipsContract: '0x959907E42f3520Ae9CaA75349941B592d3C6EBE0',
+    spaceCoinsContract: '0x2401873a29C0f7fEF76Bd18Fb26C5e62CD07A47c',
+    spaceAdventuresContract: '0x935e00E8Ad0e8BBDfDFE1D7f742b7A2C56765421',
+  },
   1001: {
     //klaytn-testnet
-    spaceShipsContract: '0xaa71521B33f97CF7466519025BC6d60F55B9dD44',
-    spaceCoinsContract: '0x43a4394Aa97Dd5962653886aeD985247d79706cb',
-    spaceAdventuresContract: '0x8847EA4d32992A5C1AdAcc6eD9d90847106ae208',
+    spaceShipsContract: '0x959907E42f3520Ae9CaA75349941B592d3C6EBE0',
+    spaceCoinsContract: '0x2401873a29C0f7fEF76Bd18Fb26C5e62CD07A47c',
+    spaceAdventuresContract: '0x935e00E8Ad0e8BBDfDFE1D7f742b7A2C56765421',
   },
 }
 
@@ -37,6 +43,7 @@ export let state: State = {
     spaceCoinsContract: undefined,
   },
   ownedShips: [],
+  onSaleShips: [],
   currentShip: null,
   ownedAdventures: [],
   currentAdventure: adventure1,

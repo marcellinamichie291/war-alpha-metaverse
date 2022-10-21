@@ -81,6 +81,10 @@
     "compile": "cross-env TS_NODE_TRANSPILE_ONLY=true hardhat compile",
     "coverage": "hardhat coverage --solcoverjs ./.solcover.js --temp artifacts --testfiles \"test/**/*.ts\" && yarn typechain",
     "deploy": "hardhat deploy:SpaceShips --network klaytn-testnet && hardhat deploy:SpaceCoins --network klaytn-testnet && hardhat deploy:SpaceAdventures --network klaytn-testnet",
+    "deployAdventures": "hardhat deploy:SpaceAdventures --network klaytn-testnet",
+    "mintShips": "hardhat mint:SpaceShips --network klaytn-testnet --address 0x959907E42f3520Ae9CaA75349941B592d3C6EBE0",
+    "mintAdventures": "hardhat mint:SpaceAdventures --network klaytn-testnet --address 0x935e00E8Ad0e8BBDfDFE1D7f742b7A2C56765421",
+    "mintAll": "yarn mintShips && yarn mintAdventures",
     "lint": "yarn lint:sol && yarn lint:ts && yarn prettier:check",
     "lint:sol": "solhint --config ./.solhint.json --max-warnings 0 \"contracts/**/*.sol\"",
     "lint:ts": "eslint --config ./.eslintrc.yml --ignore-path ./.eslintignore --ext .js,.ts .",
@@ -93,6 +97,8 @@
     "typechain": "cross-env TS_NODE_TRANSPILE_ONLY=true hardhat typechain"
   },
   "dependencies": {
-    "@openzeppelin/test-helpers": "^0.5.16"
+    "@openzeppelin/test-helpers": "^0.5.16",
+    "hardhat-abi-exporter": "^2.10.1",
+    "ipfs-http-client": "^58.0.1"
   }
 }

@@ -4,6 +4,8 @@
   "price": 0,
   "external_url": "https://waralpha.io",
   "image": "ipfs://QmdWHdtu487dpv664JwiiHQR9Q3DqDrbnJ4ZMhsue6qFQR",
+  "version": 1,
+  "dsl-manifest": 1,
   "attributes": [],
   "levels": [
     {

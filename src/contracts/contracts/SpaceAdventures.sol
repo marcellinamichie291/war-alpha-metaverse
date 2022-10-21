@@ -23,7 +23,7 @@ contract SpaceAdventures is ERC721, Ownable, ReentrancyGuard {
         bool isOnSale;
     }
 
-    constructor() ERC721("War Alpha Adventures", "WA-A") {}
+    constructor() ERC721("War Alpha Adventures", "ADVTR") {}
 
     function _baseURI() internal view virtual override returns (string memory) {
         return baseURI;
@@ -32,6 +32,19 @@ contract SpaceAdventures is ERC721, Ownable, ReentrancyGuard {
     function setBaseURI(string memory _newBaseURI) public virtual onlyOwner {
         baseURI = _newBaseURI;
     }
+
+    // Make adventures non transferable
+    // function _beforeTokenTransfer(
+    //     address from,
+    //     address to,
+    //     uint256 tokenId
+    // ) internal virtual override(ERC721) {
+    //     require(
+    //         from == address(0) || to == address(0),
+    //         "NonTransferrableERC721Token: Adventures are non transferrable"
+    //     );
+    //     super._beforeTokenTransfer(from, to, tokenId);
+    // }
 
     function getAllOnSale() public view virtual returns (TokenMeta[] memory) {
         TokenMeta[] memory tokensOnSale = new TokenMeta[](_tokenIds.current());

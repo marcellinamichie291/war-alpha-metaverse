@@ -6,6 +6,9 @@ import { resolve } from "path";
 
 import "./tasks/accounts";
 import "./tasks/deploy";
+import "./tasks/mint";
+
+require("hardhat-abi-exporter");
 
 const dotenvConfigPath: string = process.env.DOTENV_CONFIG_PATH || "./.env";
 dotenvConfig({ path: resolve(__dirname, dotenvConfigPath) });
@@ -31,7 +34,6 @@ const chainIds = {
   "optimism-mainnet": 10,
   "polygon-mainnet": 137,
   "polygon-mumbai": 80001,
-  rinkeby: 4,
   "coinex-testnet": 53,
   "klaytn-testnet": 1001,
 };
@@ -66,6 +68,15 @@ function getChainConfig(chain: keyof typeof chainIds): NetworkUserConfig {
 }
 
 const config: HardhatUserConfig = {
+  //@ts-ignore
+  abiExporter: {
+    path: "./abi",
+    runOnCompile: true,
+    clear: true,
+    flat: true,
+    spacing: 2,
+    pretty: true,
+  },
   defaultNetwork: "hardhat",
   etherscan: {
     apiKey: {
@@ -100,7 +111,6 @@ const config: HardhatUserConfig = {
     optimism: getChainConfig("optimism-mainnet"),
     "polygon-mainnet": getChainConfig("polygon-mainnet"),
     "polygon-mumbai": getChainConfig("polygon-mumbai"),
-    rinkeby: getChainConfig("rinkeby"),
     "coinex-testnet": getChainConfig("coinex-testnet"),
     "klaytn-testnet": getChainConfig("klaytn-testnet"),
   },

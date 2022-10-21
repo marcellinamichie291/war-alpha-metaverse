@@ -1,4 +1,3 @@
-import { getShips, mintShip } from '../blockchain/lib'
 import { state } from '../state/state'
 
 export class SelectorScene extends Phaser.Scene {
@@ -120,54 +119,6 @@ export class SelectorScene extends Phaser.Scene {
       this.sound.add('clickSound').play()
       this.scene.start('GetAdventures')
     })
-
-    // for (let i = 0; i < 4; i++) {
-    //   const bigCell = this.add.image(
-    //     this.sys.canvas.width / 2 - 450 + i * 300,
-    //     this.sys.canvas.height / 2 - 50,
-    //     'bigCell',
-    //   )
-    //   const ship = state.ownedShips[i]
-
-    //   if (ship && ship.shipCode) {
-    //     const partCabin = this.add.image(0, 0, `partCabin${ship.shipCode[0]}`)
-    //     const partEngine = this.add.image(0, 0, `partEngine${ship.shipCode[1]}`)
-    //     const partWing = this.add.image(0, 0, `partWing${ship.shipCode[2]}`)
-    //     const partWeapon = this.add.image(0, 0, `partWeapon${ship.shipCode[3]}`)
-    //     let container = this.add.container(this.sys.canvas.width / 2 - 450 + i * 300, this.sys.canvas.height / 2 - 50, [
-    //       partWeapon,
-    //       partWing,
-    //       partEngine,
-    //       partCabin,
-    //     ])
-    //     container.setSize(bigCell.width, bigCell.height)
-    //     container.setInteractive({ cursor: 'pointer' })
-
-    //     container.on('pointerover', () => bigCell.setTexture('bigCellHover'))
-    //     container.on('pointerout', () => bigCell.setTexture('bigCell'))
-
-    //     container.on('pointerdown', () => {
-    //       this.sound.add('clickSound').play()
-    //       state.currentShip = ship
-    //       console.log(ship)
-    //       this.scene.start('Game')
-    //     })
-    //   }
-    // }
-
-    // this.buttonMint = this.add.image(this.sys.canvas.width / 2, this.sys.canvas.height / 2 + 200, 'buttonMint')
-    // this.buttonMint.setSize(this.buttonMint.width, this.buttonMint.height)
-    // this.buttonMint.setInteractive({ cursor: 'pointer' })
-    // this.buttonMint.on('pointerover', () => this.buttonMint && this.buttonMint.setTexture('buttonMintHover'))
-    // this.buttonMint.on('pointerout', () => this.buttonMint && this.buttonMint.setTexture('buttonMint'))
-    // this.buttonMint.on('pointerdown', async () => {
-    //   this.sound.add('clickSound').play()
-    //   this.showLoading = true
-    //   await mintShip()
-    //   await getShips()
-    //   this.scene.restart()
-    //   this.showLoading = false
-    // })
 
     let buttonBack = this.add.image(90, this.sys.canvas.height - 90, 'left-arrow')
     buttonBack.setInteractive({ cursor: 'pointer' })

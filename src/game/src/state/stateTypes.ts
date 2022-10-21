@@ -1,6 +1,7 @@
 export type ShipToken = {
   tokenId: number
   shipCode: string
+  price: number
 }
 
 export type AdventureToken = {
@@ -60,6 +61,7 @@ export type State = {
     spaceCoinsContract?: string
   }
   ownedShips: ShipToken[]
+  onSaleShips: ShipToken[]
   currentShip: ShipToken | null
   ownedAdventures: AdventureToken[]
   currentAdventure: AdventureToken | null

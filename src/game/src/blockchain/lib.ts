@@ -3,13 +3,17 @@ import { ShipToken } from '../state/stateTypes'
 import { contracts, state } from '../state/state'
 const SpaceShipsAbi = require('./abi/SpaceShips.json')
 const SpaceCoinsAbi = require('./abi/SpaceCoins.json')
+import type { SpaceShips } from './types/contracts/SpaceShips'
+import type { SpaceAdventures } from './types/contracts/SpaceAdventures'
+import type { SpaceCoins } from './types/contracts/SpaceCoins'
+import type { SpaceShips__factory } from './types/factories/contracts/SpaceShips__factory'
 
 declare var window: any
 let provider: ethers.providers.Web3Provider
 let signer: ethers.providers.JsonRpcSigner
 let address: string
-let spaceShipsContractWithSigner: ethers.Contract
-let spaceCoinsContractWithSigner: ethers.Contract
+let spaceShipsContractWithSigner: SpaceShips
+let spaceCoinsContractWithSigner: SpaceCoins
 
 export const connectWallet = async () => {
   provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -26,54 +30,50 @@ export const connectWallet = async () => {
   address = await signer.getAddress()
 
   const spaceShipsContract = new ethers.Contract(state.contracts.spaceShipsContract, SpaceShipsAbi, provider)
-  spaceShipsContractWithSigner = spaceShipsContract.connect(signer)
+  spaceShipsContractWithSigner = <SpaceShips>spaceShipsContract.connect(signer)
 
   const spaceCoinsContract = new ethers.Contract(state.contracts.spaceCoinsContract, SpaceCoinsAbi, provider)
-  spaceCoinsContractWithSigner = spaceCoinsContract.connect(signer)
+  spaceCoinsContractWithSigner = <SpaceCoins>spaceCoinsContract.connect(signer)
 }
 
 export const getShips = async () => {
-  const shipId1 = await spaceShipsContractWithSigner.tokenOfOwnerByIndex(address, 1)
-  const shipId2 = await spaceShipsContractWithSigner.tokenOfOwnerByIndex(address, 2)
-  const shipId3 = await spaceShipsContractWithSigner.tokenOfOwnerByIndex(address, 3)
-  const shipId4 = await spaceShipsContractWithSigner.tokenOfOwnerByIndex(address, 4)
-
-  const shipCode1 = await spaceShipsContractWithSigner._tokenToShipCode(shipId1)
-  const shipCode2 = await spaceShipsContractWithSigner._tokenToShipCode(shipId2)
-  const shipCode3 = await spaceShipsContractWithSigner._tokenToShipCode(shipId3)
-  const shipCode4 = await spaceShipsContractWithSigner._tokenToShipCode(shipId4)
-
-  state.ownedShips = [
-    {
-      tokenId: shipId1,
-      shipCode: shipCode1,
-    },
-    {
-      tokenId: shipId2,
-      shipCode: shipCode2,
-    },
-    {
-      tokenId: shipId3,
-      shipCode: shipCode3,
-    },
-    {
-      tokenId: shipId4,
-      shipCode: shipCode4,
-    },
-  ]
+  const ownedShipsIds = await spaceShipsContractWithSigner.getTokensOwnedByMe()
+  ownedShipsIds.forEach(async (ownedShipsId) => {
+    const shipMeta = await spaceShipsContractWithSigner.tokenMeta(ownedShipsId)
+    state.ownedShips.push({
+      tokenId: shipMeta[0].toNumber(),
+      shipCode: shipMeta[3].replace('https://waralpha.io/assets/ships/', '').replace('.json', ''),
+      price: shipMeta[1].toNumber(),
+    })
+  })
   console.log(state.ownedShips)
+
+  const onSaleShipsIds = await spaceShipsContractWithSigner.getAllOnSale()
+  onSaleShipsIds.forEach(async (onSaleShip) => {
+    state.onSaleShips.push({
+      tokenId: onSaleShip[0].toNumber(),
+      shipCode: onSaleShip[3].replace('https://waralpha.io/assets/ships/', '').replace('.json', ''),
+      price: onSaleShip[1].toNumber(),
+    })
+  })
+  console.log(state.onSaleShips)
 }
 
-export const mintShip = async () => {
-  const tx = await spaceShipsContractWithSigner.mintShip(address)
-  const receipt = await tx.wait()
-  console.log(receipt)
+export const buyShip = async (shipToken: ShipToken) => {
+  const receipt = await spaceShipsContractWithSigner.purchaseToken(shipToken.tokenId, {
+    value: shipToken.price,
+  })
+  const tx = await receipt.wait()
+  console.log(tx)
 }
 
-export const upgradeShip = async (ship: ShipToken) => {
-  const tx = await spaceShipsContractWithSigner.upgradeShip(ship.tokenId, ship.shipCode)
-  const confirmation = await provider.getTransactionReceipt(tx.hash)
-  console.log(confirmation)
+export const upgradeShip = async (shipToken: ShipToken) => {
+  const receipt = await spaceShipsContractWithSigner.updateTokenUri(
+    shipToken.tokenId,
+    `https://waralpha.io/assets/ships/${shipToken.shipCode}.json`,
+  )
+  const tx = await receipt.wait()
+  console.log(tx)
 }
 
 export const getAlphasBalance = async () => {

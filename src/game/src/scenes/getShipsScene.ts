@@ -1,4 +1,4 @@
-import { getShips, mintShip } from '../blockchain/lib'
+import { getShips, buyShip } from '../blockchain/lib'
 import { state } from '../state/state'
 
 export class GetShipsScene extends Phaser.Scene {
@@ -33,6 +33,7 @@ export class GetShipsScene extends Phaser.Scene {
 
     this.add.image(100 + 700, 25 + 30, 'header')
 
+
     for (let i = 0; i < 4; i++) {
       const bigCell = this.add.image(
         this.sys.canvas.width / 2 - 450 + i * 300,
@@ -55,10 +56,6 @@ export class GetShipsScene extends Phaser.Scene {
         container.rotation = -Math.PI / 2
         container.setSize(bigCell.width, bigCell.height)
         container.setInteractive({ cursor: 'pointer' })
-
-        container.on('pointerover', () => bigCell.setTexture('bigCellHover'))
-        container.on('pointerout', () => bigCell.setTexture('bigCell'))
-
         container.on('pointerdown', () => {
           this.sound.add('clickSound').play()
           state.currentShip = ship
@@ -78,7 +75,7 @@ export class GetShipsScene extends Phaser.Scene {
     this.buttonMint.on('pointerdown', async () => {
       this.sound.add('clickSound').play()
       this.showLoading = true
-      await mintShip()
+      await buyShip()
       await getShips()
       this.scene.restart()
       this.showLoading = false
