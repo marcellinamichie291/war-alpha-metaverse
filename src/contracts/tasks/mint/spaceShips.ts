@@ -34,6 +34,16 @@ task("mint:SpaceShips")
       .mintCollectable(signers[0].address, "https://waralpha.io/assets/ships/3312.json", "Genesis Ship", 300000, true);
     await mint4.wait();
 
+    const mint5 = await spaceShips
+      .connect(signers[0])
+      .mintCollectable(signers[0].address, "https://waralpha.io/assets/ships/0102.json", "Genesis Ship", 10, true);
+    await mint5.wait();
+
+    const mint6 = await spaceShips
+      .connect(signers[0])
+      .mintCollectable(signers[0].address, "https://waralpha.io/assets/ships/3333.json", "Genesis Ship", 10, true);
+    await mint6.wait();
+
     const shipsOnSale = await spaceShips.connect(signers[0]).getAllOnSale();
     console.log(shipsOnSale);
 

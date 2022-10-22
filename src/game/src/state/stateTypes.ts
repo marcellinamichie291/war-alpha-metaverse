@@ -2,6 +2,7 @@ export type ShipToken = {
   tokenId: number
   shipCode: string
   price: number
+  owned: boolean
 }
 
 export type AdventureToken = {

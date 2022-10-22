@@ -44,6 +44,7 @@ export const getShips = async () => {
       tokenId: shipMeta[0].toNumber(),
       shipCode: shipMeta[3].replace('https://waralpha.io/assets/ships/', '').replace('.json', ''),
       price: shipMeta[1].toNumber(),
+      owned: true,
     })
   })
   console.log(state.ownedShips)
@@ -54,6 +55,7 @@ export const getShips = async () => {
       tokenId: onSaleShip[0].toNumber(),
       shipCode: onSaleShip[3].replace('https://waralpha.io/assets/ships/', '').replace('.json', ''),
       price: onSaleShip[1].toNumber(),
+      owned: false,
     })
   })
   console.log(state.onSaleShips)
@@ -63,6 +65,12 @@ export const buyShip = async (shipToken: ShipToken) => {
   const receipt = await spaceShipsContractWithSigner.purchaseToken(shipToken.tokenId, {
     value: shipToken.price,
   })
+  const tx = await receipt.wait()
+  console.log(tx)
+}
+
+export const sellShip = async (shipToken: ShipToken, price: number) => {
+  const receipt = await spaceShipsContractWithSigner.setTokenSale(shipToken.tokenId, true, price)
   const tx = await receipt.wait()
   console.log(tx)
 }
